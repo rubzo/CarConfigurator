@@ -120,7 +120,11 @@ public class MenuController : MonoBehaviour
 
     public void PrevButtonPressed()
     {
-        currentCarIndex = (currentCarIndex - 1) % carCount;
+        currentCarIndex--;
+        if (currentCarIndex < 0)
+        {
+            currentCarIndex = carCount - 1;
+        }
         LoadCarFromIndex(currentCarIndex);
     }
 
