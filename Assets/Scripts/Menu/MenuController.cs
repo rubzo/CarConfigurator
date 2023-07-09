@@ -29,6 +29,8 @@ public class MenuController : MonoBehaviour
     private bool[] colorPartSelections;
     private bool[] accessorySelections;
 
+    private Carousel carousel;
+
     private void RemoveAllChildrenFromContainer(GameObject container)
     {
         foreach (Transform t in container.transform)
@@ -62,6 +64,8 @@ public class MenuController : MonoBehaviour
 
     private void LoadCarFromIndex(int index)
     {
+        carousel.enabled = true;
+
         RemoveAllChildrenFromContainer(carMeshParent);
 
         currentPrefab = GameObject.Instantiate(allCars.carList[index], carMeshParent.transform, false);
@@ -114,6 +118,7 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
+        carousel = carMeshParent.GetComponent<Carousel>();
         carCount = allCars.carList.Count;
         LoadCarFromIndex(currentCarIndex);
     }
@@ -145,5 +150,13 @@ public class MenuController : MonoBehaviour
     {
         accessorySelections[index] = isNowSelected;
         SetTotalPriceBasedOnSelection();
+    }
+
+    public void DriveItAwayButtonPressed()
+    {
+        carousel.enabled = false;
+
+        // TODO really, you should get this earlier.
+        carMeshParent.transform.GetChild(0).GetComponent<DriveForward>().Go();
     }
 }

@@ -184,6 +184,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1205170596836740735}
   - component: {fileID: 1671707618089789833}
+  - component: {fileID: 5199456667880467363}
+  - component: {fileID: 3943468416020653075}
+  - component: {fileID: 8363124607356891893}
   m_Layer: 0
   m_Name: SUVPrefab
   m_TagString: Untagged
@@ -247,6 +250,47 @@ MonoBehaviour:
       price: 5125
     - name: Autopilot
       price: 8000
+--- !u!54 &5199456667880467363
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013796130969834693}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3943468416020653075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013796130969834693}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1686261, y: 1.2885013, z: 2.502656}
+  m_Center: {x: -0.024554133, y: 0.67572165, z: -0.041832685}
+--- !u!114 &8363124607356891893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013796130969834693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71201d7f31b3842d19ab62725b0e537f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4200941376453734088
 GameObject:
   m_ObjectHideFlags: 0
