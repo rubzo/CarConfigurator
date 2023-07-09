@@ -11,7 +11,7 @@ public class MenuController : MonoBehaviour
     public TMP_Text carNameText;
 
     private int currentCarIndex = 0;
-    private int maxIndex;
+    private int carCount;
 
     private GameObject currentPrefab;
     private CarDesignController currentDesignController;
@@ -19,6 +19,10 @@ public class MenuController : MonoBehaviour
 
     private void LoadCarFromIndex(int index)
     {
+        foreach (Transform t in carMeshParent.transform)
+        {
+            GameObject.Destroy(t.gameObject);
+        }
         carMeshParent.transform.DetachChildren();
 
         currentPrefab = GameObject.Instantiate(allCars.carList[index], carMeshParent.transform, false);
@@ -35,17 +39,19 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
-        maxIndex = allCars.carList.Count - 1;
+        carCount = allCars.carList.Count;
         LoadCarFromIndex(currentCarIndex);
     }
 
     public void PrevButtonPressed()
     {
-
+        currentCarIndex = (currentCarIndex - 1) % carCount;
+        LoadCarFromIndex(currentCarIndex);
     }
 
     public void NextButtonPressed()
     {
-
+        currentCarIndex = (currentCarIndex + 1) % carCount;
+        LoadCarFromIndex(currentCarIndex);
     }
 }
