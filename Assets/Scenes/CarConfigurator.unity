@@ -948,7 +948,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2722944, g: 0.27289546, b: 0.2735849, a: 0}
+  m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1213995572}
   m_HandleRect: {fileID: 1213995571}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3029,7 +3029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1030932317
@@ -3262,9 +3262,9 @@ MonoBehaviour:
   carNameText: {fileID: 195666554}
   basePriceText: {fileID: 1830137116}
   totalPriceText: {fileID: 537525947}
-  colorOptionsContentHolder: {fileID: 1030932315}
+  colorPartsContentHolder: {fileID: 1030932315}
   accessoriesContentHolder: {fileID: 2001613385}
-  colorOptionPrefab: {fileID: 2578537469487816595, guid: ac64c62e8a6a246e99b94959390a7624, type: 3}
+  colorPartPrefab: {fileID: 2578537469487816595, guid: ac64c62e8a6a246e99b94959390a7624, type: 3}
   accessoryPrefab: {fileID: 8108337861592733696, guid: 7e365ac2bbc83470684b1d65c663795e, type: 3}
   invoiceController: {fileID: 169463114}
 --- !u!1 &1131344809
@@ -3463,7 +3463,7 @@ GameObject:
   - component: {fileID: 1448588756}
   - component: {fileID: 1448588755}
   m_Layer: 5
-  m_Name: Scroll View for Color Options
+  m_Name: Scroll View for Color Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4357,7 +4357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2001613387
@@ -4412,7 +4412,7 @@ GameObject:
   - component: {fileID: 2017184820}
   - component: {fileID: 2017184819}
   m_Layer: 5
-  m_Name: ColorOptionsStaticText
+  m_Name: ColorPartsStaticText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

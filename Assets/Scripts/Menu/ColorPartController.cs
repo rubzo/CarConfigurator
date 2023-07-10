@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ColorOptionController : MonoBehaviour
+public class ColorPartController : MonoBehaviour
 {
     public TMP_Text nameText;
     public GameObject baseButton;
@@ -47,9 +47,6 @@ public class ColorOptionController : MonoBehaviour
         baseButton.transform.localScale = Vector3.one * 1.1f;
         luxuryButton.transform.localScale = Vector3.one * 0.85f;
 
-        baseButtonText.fontStyle = FontStyles.Bold;
-        luxuryButtonText.fontStyle = FontStyles.Normal;
-
         parentMenuController.UpdateFromColorPart(myIndex, false);
         currentState = State.BASE_SELECTED;
     }
@@ -60,9 +57,6 @@ public class ColorOptionController : MonoBehaviour
 
         baseButton.transform.localScale = Vector3.one * 0.85f;
         luxuryButton.transform.localScale = Vector3.one * 1.1f;
-
-        baseButtonText.fontStyle = FontStyles.Normal;
-        luxuryButtonText.fontStyle = FontStyles.Bold;
 
         parentMenuController.UpdateFromColorPart(myIndex, true);
         currentState = State.LUXURY_SELECTED;

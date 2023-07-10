@@ -13,10 +13,10 @@ public class MenuController : MonoBehaviour
 
     public TMP_Text totalPriceText;
 
-    public GameObject colorOptionsContentHolder;
+    public GameObject colorPartsContentHolder;
     public GameObject accessoriesContentHolder;
 
-    public GameObject colorOptionPrefab;
+    public GameObject colorPartPrefab;
     public GameObject accessoryPrefab;
 
     public InvoiceController invoiceController;
@@ -90,15 +90,15 @@ public class MenuController : MonoBehaviour
         SetAllDetails();
     }
 
-    private void SpawnAllColorOptions(List<ColorPart> colorParts)
+    private void SpawnAllColorParts(List<ColorPart> colorParts)
     {
         for (int colorPartIndex = 0; colorPartIndex < colorParts.Count; colorPartIndex++)
         {
             ColorPart colorPart = colorParts[colorPartIndex];
 
-            GameObject newGameObject = GameObject.Instantiate(colorOptionPrefab, colorOptionsContentHolder.transform, false);
-            ColorOptionController controller = newGameObject.GetComponent<ColorOptionController>();
-            controller.Setup(this, colorPartIndex, colorPart.name, ColorOptionController.State.BASE_SELECTED, colorPart.luxuryPrice);
+            GameObject newGameObject = GameObject.Instantiate(colorPartPrefab, colorPartsContentHolder.transform, false);
+            ColorPartController controller = newGameObject.GetComponent<ColorPartController>();
+            controller.Setup(this, colorPartIndex, colorPart.name, ColorPartController.State.BASE_SELECTED, colorPart.luxuryPrice);
         }
     }
 
@@ -119,8 +119,8 @@ public class MenuController : MonoBehaviour
         carNameText.text = currentDetails.name;
         basePriceText.text = string.Format("${0:#,#}", currentDetails.basePrice);
 
-        RemoveAllChildrenFromContainer(colorOptionsContentHolder);
-        SpawnAllColorOptions(currentDetails.colorParts);
+        RemoveAllChildrenFromContainer(colorPartsContentHolder);
+        SpawnAllColorParts(currentDetails.colorParts);
 
         RemoveAllChildrenFromContainer(accessoriesContentHolder);
         SpawnAllAccessories(currentDetails.accessories);
