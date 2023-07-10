@@ -358,6 +358,7 @@ MonoBehaviour:
   itemListText: {fileID: 1842855759}
   priceListText: {fileID: 1761525684}
   totalPriceText: {fileID: 850633742}
+  noRefundsText: {fileID: 2114952542}
 --- !u!114 &169463115
 MonoBehaviour:
   m_ObjectHideFlags: 0
