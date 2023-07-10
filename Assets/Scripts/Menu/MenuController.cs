@@ -21,7 +21,7 @@ public class MenuController : MonoBehaviour
 
     public InvoiceController invoiceController;
 
-    private int currentCarIndex = 0;
+    private int currentCarIndex;
     private int carCount;
 
     private GameObject currentPrefab;
@@ -32,6 +32,7 @@ public class MenuController : MonoBehaviour
     private bool[] accessorySelections;
 
     private Carousel carousel;
+    private DriveForward driveForward;
 
     enum State
     {
@@ -40,6 +41,14 @@ public class MenuController : MonoBehaviour
     }
 
     private State state;
+
+    void Awake()
+    {
+        currentCarIndex = 0;
+        carousel = carMeshParent.GetComponent<Carousel>();
+        carCount = allCars.carList.Count;
+        LoadCarFromIndex(currentCarIndex);
+    }
 
     private void RemoveAllChildrenFromContainer(GameObject container)
     {
@@ -50,7 +59,7 @@ public class MenuController : MonoBehaviour
         container.transform.DetachChildren();
     }
 
-    private void SetTotalPriceBasedOnSelection()
+    private void UpdateDisplayedTotalPriceBasedOnSelection()
     {
         int total = 0;
         total += currentDetails.basePrice;
@@ -83,6 +92,8 @@ public class MenuController : MonoBehaviour
         currentPrefab = GameObject.Instantiate(allCars.carList[index], carMeshParent.transform, false);
         currentDesignController = currentPrefab.GetComponent<CarDesignController>();
         currentDetails = currentDesignController.GetDetails();
+
+        driveForward = carMeshParent.transform.GetChild(0).GetComponent<DriveForward>();
 
         colorPartSelections = new bool[currentDetails.colorParts.Count];
         accessorySelections = new bool[currentDetails.accessories.Count];
@@ -125,58 +136,7 @@ public class MenuController : MonoBehaviour
         RemoveAllChildrenFromContainer(accessoriesContentHolder);
         SpawnAllAccessories(currentDetails.accessories);
 
-        SetTotalPriceBasedOnSelection();
-    }
-
-    void Awake()
-    {
-        carousel = carMeshParent.GetComponent<Carousel>();
-        carCount = allCars.carList.Count;
-        LoadCarFromIndex(currentCarIndex);
-    }
-
-    public void PrevButtonPressed()
-    {
-        currentCarIndex--;
-        if (currentCarIndex < 0)
-        {
-            currentCarIndex = carCount - 1;
-        }
-        LoadCarFromIndex(currentCarIndex);
-    }
-
-    public void NextButtonPressed()
-    {
-        currentCarIndex = (currentCarIndex + 1) % carCount;
-        LoadCarFromIndex(currentCarIndex);
-    }
-
-    public void UpdateFromColorPart(int index, bool switchToLuxury)
-    {
-        colorPartSelections[index] = switchToLuxury;
-        currentDesignController.AdjustColorPart(index, switchToLuxury);
-        SetTotalPriceBasedOnSelection();
-    }
-
-    public void UpdateFromAccessory(int index, bool isNowSelected)
-    {
-        accessorySelections[index] = isNowSelected;
-        SetTotalPriceBasedOnSelection();
-    }
-
-    public void DriveItAwayButtonPressed()
-    {
-        if (state == State.WAITING)
-        {
-            carousel.enabled = false;
-
-            DispatchInvoice();
-
-            // TODO really, you should get this earlier.
-            carMeshParent.transform.GetChild(0).GetComponent<DriveForward>().Go();
-
-            state = State.PAID;
-        }
+        UpdateDisplayedTotalPriceBasedOnSelection();
     }
 
     private void DispatchInvoice()
@@ -207,5 +167,52 @@ public class MenuController : MonoBehaviour
 
         invoiceController.CreateInvoice(items, prices);
         invoiceController.ShowInvoice();
+    }
+
+    //
+    // -- Interface --
+    //
+
+    public void PrevButtonPressed()
+    {
+        currentCarIndex--;
+        if (currentCarIndex < 0)
+        {
+            currentCarIndex = carCount - 1;
+        }
+        LoadCarFromIndex(currentCarIndex);
+    }
+
+    public void NextButtonPressed()
+    {
+        currentCarIndex = (currentCarIndex + 1) % carCount;
+        LoadCarFromIndex(currentCarIndex);
+    }
+
+    public void UpdateFromColorPart(int index, bool switchToLuxury)
+    {
+        colorPartSelections[index] = switchToLuxury;
+        currentDesignController.AdjustColorPart(index, switchToLuxury);
+        UpdateDisplayedTotalPriceBasedOnSelection();
+    }
+
+    public void UpdateFromAccessory(int index, bool isNowSelected)
+    {
+        accessorySelections[index] = isNowSelected;
+        UpdateDisplayedTotalPriceBasedOnSelection();
+    }
+
+    public void DriveItAwayButtonPressed()
+    {
+        if (state == State.WAITING)
+        {
+            carousel.enabled = false;
+
+            DispatchInvoice();
+
+            driveForward.Go();
+
+            state = State.PAID;
+        }
     }
 }

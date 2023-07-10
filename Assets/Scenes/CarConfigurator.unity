@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 523862996}
   - component: {fileID: 523862995}
   m_Layer: 5
-  m_Name: PAID IN FULL
+  m_Name: PaidInFullStamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4584,7 +4584,7 @@ GameObject:
   - component: {fileID: 2114952545}
   - component: {fileID: 2114952544}
   m_Layer: 5
-  m_Name: NO REFUNDS
+  m_Name: NoRefundsStamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

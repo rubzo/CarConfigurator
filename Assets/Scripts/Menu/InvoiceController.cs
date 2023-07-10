@@ -11,6 +11,12 @@ public class InvoiceController : MonoBehaviour
 
     public GameObject noRefundsText;
 
+    private IEnumerator ShowNoRefundsStampAfterDelay()
+    {
+        yield return new WaitForSeconds(1.4f);
+        noRefundsText.SetActive(true);
+    }
+
     public void CreateInvoice(List<string> itemNames, List<int> itemPrices)
     {
         itemListText.text = string.Join("\n", itemNames);
@@ -34,13 +40,7 @@ public class InvoiceController : MonoBehaviour
     public void ShowInvoice()
     {
         gameObject.SetActive(true);
-        StartCoroutine(ShowNoRefundsAfterDelay());
-    }
-
-    private IEnumerator ShowNoRefundsAfterDelay()
-    {
-        yield return new WaitForSeconds(1.4f);
-        noRefundsText.SetActive(true);
+        StartCoroutine(ShowNoRefundsStampAfterDelay());
     }
 
     public void HideInvoice()
