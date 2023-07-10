@@ -19,6 +19,8 @@ public class MenuController : MonoBehaviour
     public GameObject colorOptionPrefab;
     public GameObject accessoryPrefab;
 
+    public InvoiceController invoiceController;
+
     private int currentCarIndex = 0;
     private int carCount;
 
@@ -30,6 +32,14 @@ public class MenuController : MonoBehaviour
     private bool[] accessorySelections;
 
     private Carousel carousel;
+
+    enum State
+    {
+        WAITING,
+        PAID
+    }
+
+    private State state;
 
     private void RemoveAllChildrenFromContainer(GameObject container)
     {
@@ -64,6 +74,8 @@ public class MenuController : MonoBehaviour
 
     private void LoadCarFromIndex(int index)
     {
+        state = State.WAITING;
+
         carousel.enabled = true;
 
         RemoveAllChildrenFromContainer(carMeshParent);
@@ -154,9 +166,46 @@ public class MenuController : MonoBehaviour
 
     public void DriveItAwayButtonPressed()
     {
-        carousel.enabled = false;
+        if (state == State.WAITING)
+        {
+            carousel.enabled = false;
 
-        // TODO really, you should get this earlier.
-        carMeshParent.transform.GetChild(0).GetComponent<DriveForward>().Go();
+            DispatchInvoice();
+
+            // TODO really, you should get this earlier.
+            carMeshParent.transform.GetChild(0).GetComponent<DriveForward>().Go();
+
+            state = State.PAID;
+        }
+    }
+
+    private void DispatchInvoice()
+    {
+        List<string> items = new List<string>();
+        List<int> prices = new List<int>();
+
+        items.Add(currentDetails.name);
+        prices.Add(currentDetails.basePrice);
+
+        for (int index = 0; index < currentDetails.colorParts.Count; index++)
+        {
+            if (colorPartSelections[index])
+            {
+                items.Add("+ Luxury " + currentDetails.colorParts[index].name);
+                prices.Add(currentDetails.colorParts[index].luxuryPrice);
+            }
+        }
+
+        for (int index = 0; index < currentDetails.accessories.Count; index++)
+        {
+            if (accessorySelections[index])
+            {
+                items.Add("+ " + currentDetails.accessories[index].name);
+                prices.Add(currentDetails.accessories[index].price);
+            }
+        }
+
+        invoiceController.CreateInvoice(items, prices);
+        invoiceController.ShowInvoice();
     }
 }
