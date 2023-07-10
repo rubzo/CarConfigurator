@@ -2991,6 +2991,9 @@ MonoBehaviour:
   carList:
   - {fileID: 2013796130969834693, guid: af0aed95eec7b42ce8dbd39776300ea5, type: 3}
   - {fileID: 2013796130969834693, guid: 50e91eca260e544939b3b1bb9706d23e, type: 3}
+  - {fileID: 2013796130969834693, guid: 166f0ed46793b4a4496dd206083906fb, type: 3}
+  - {fileID: 2013796130969834693, guid: 75700b0a3636a4b37b4aace80ef918df, type: 3}
+  - {fileID: 2013796130969834693, guid: 521b2afc1b06a4fdd932e9d5d9a85e40, type: 3}
 --- !u!1 &1030932315
 GameObject:
   m_ObjectHideFlags: 0

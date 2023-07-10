@@ -72,9 +72,9 @@ MonoBehaviour:
       material: {fileID: 3398073514908505954, guid: fc69b4f14b8014d06ab9513e075797da, type: 3}
       luxuryPrice: 450
     accessories:
-    - name: Heated Seats
+    - name: Heated seats
       price: 995
-    - name: Reversing Camera
+    - name: Reversing camera
       price: 2100
 --- !u!54 &5822083353910508433
 Rigidbody:
