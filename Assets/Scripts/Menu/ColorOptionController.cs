@@ -44,7 +44,7 @@ public class ColorOptionController : MonoBehaviour
     {
         priceText.text = "+$0";
 
-        baseButton.transform.localScale = Vector3.one;
+        baseButton.transform.localScale = Vector3.one * 1.1f;
         luxuryButton.transform.localScale = Vector3.one * 0.85f;
 
         baseButtonText.fontStyle = FontStyles.Bold;
@@ -59,7 +59,7 @@ public class ColorOptionController : MonoBehaviour
         priceText.text = string.Format("+${0:#,#}", luxuryPrice);
 
         baseButton.transform.localScale = Vector3.one * 0.85f;
-        luxuryButton.transform.localScale = Vector3.one;
+        luxuryButton.transform.localScale = Vector3.one * 1.1f;
 
         baseButtonText.fontStyle = FontStyles.Normal;
         luxuryButtonText.fontStyle = FontStyles.Bold;
