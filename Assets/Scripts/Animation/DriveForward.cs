@@ -18,13 +18,13 @@ public class DriveForward : MonoBehaviour
 
     private IEnumerator AccelerationCoroutine()
     {
-        int framesToAccelerateFor = 120;
+        int framesToAccelerateFor = 90;
         int counter = 0;
         while (counter != framesToAccelerateFor)
         {
             float lerp = counter / (float)framesToAccelerateFor;
             lerp = EaseInSine(lerp);
-            myRigidBody.AddRelativeForce(Vector3.forward * (9.0f * lerp));
+            myRigidBody.AddRelativeForce(Vector3.forward * (20.0f * lerp));
             counter++;
             yield return new WaitForEndOfFrame();
         }

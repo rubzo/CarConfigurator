@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bde8c1be31d4b45ad6ec2a02e38682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesBetweenStateChange: 45
+  framesBetweenStateChange: 4
   moveBounds: 0.005
 --- !u!1 &1377665737946114681
 GameObject:
